@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from . import local_settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'svsowr^^l!_th37p$+f^thn%si*tuz1s1vrt7ks00#v&q&_@r('
+SECRET_KEY = local_settings.key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,9 +77,9 @@ WSGI_APPLICATION = 'ytfsweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ytfswebdb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': local_settings.db['name'],
+        'USER': local_settings.db['user'],
+        'PASSWORD': local_settings.db['password'],
         'HOST': '',
         'PORT': '',
     }
