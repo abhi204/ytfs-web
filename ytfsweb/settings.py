@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': local_settings.db['name'],
         'USER': local_settings.db['user'],
         'PASSWORD': local_settings.db['password'],
-        'HOST': '',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
