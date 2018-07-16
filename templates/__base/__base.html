@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>{%block TITLE %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+  <!-- <link rel="stylesheet" href="{% static '/base/__base.css' %}"> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="{% static '/base/__base.js' %}" charset="utf-8"></script> -->
+</head>
+
+<body>
+  <!--- TOP Navigation Bar -->
+  <div class="title-bar sticky">
+    <div class="title-bar-left">
+      LOGO and WEBSITE-NAME
+    </div>
+    <div class="title-bar-right">
+      <a href="#">OPTIONS</a>
+    </div>
+  </div>
+  {% block BODY %}{% endblock %}
+</body>
+
+</html>
