@@ -126,3 +126,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MY_STATIC = os.path.join(BASE_DIR,'mystatic') #MY static FILES which are organised by me and actually used by templates (eg. linking js,css,img files for webpages)
+STATICFILES_DIRS = [
+    MY_STATIC,
+]
