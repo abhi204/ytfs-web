@@ -1,9 +1,108 @@
-.sticky{
-  position: fixed;
-  width: 100%;
-  top: 0;
+/* FOR LARGE SCREENS */
+
+.nav-item {
+  flex-grow: 1;
 }
 
-.content{
-  margin-top: 3em;
+.navbar {
+  background-color: #333333;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: small;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.search {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.form-inline>.form-control {
+  margin-right: 0.3rem;
+}
+
+.dropdown-item, .dropdown-menu {
+  background-color: rgb(176, 176, 176);
+}
+
+.quality {
+  margin-right: 0.5rem;
+}
+
+#navbarDropdownMenuLink, #navbarDropdownMenuLink:hover {
+  color: #ff0083;
+  font-weight: bold;
+}
+
+#navbarDropdownMenuLink:hover {
+  background-color: #555555;
+}
+
+#quality {
+  color: white;
+  padding: 0.5rem;
+}
+
+#list-toggle {
+  flex-grow: inherit;
+}
+
+.smallnav {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  /* when toggle button is pressed. */
+  #list-toggle {
+    /* quality dropdown,text are formatted */
+    margin-top: 1em;
+  }
+  .quality, #quality {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .largenav {
+    display: none;
+  }
+  .smallnav {
+    display: flex;
+  }
+}
+
+/* FINISHED WITH LARGER SCREENS */
+
+/* FOR MEDIUM , SMALL SCREENS  */
+
+.small-logo, .small-icon {
+  margin-right: 0;
+}
+
+.small-quality {
+  margin-right: 0;
+}
+
+.quality-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.small-logo, .small-quality {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.small-search {
+  flex-grow: 3;
+}
+
+.small-search-input {
+  margin: 0 0.5em;
 }
