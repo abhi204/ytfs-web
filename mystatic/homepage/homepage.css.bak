@@ -1,0 +1,66 @@
+/* particlesJS  */
+ canvas {
+   display: block;
+   vertical-align: bottom;
+ }
+
+ #particles-js {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: #55002b;
+   left: 0;
+ }
+
+/* large and medium screens  */
+body {
+  margin: 0;
+  font: normal 75% Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 50vh; transform: translateY(-50%);
+  background-color:rgba(0, 0, 0, 0.4);
+  padding: 1.5em 0;
+  border-radius: 1.5em;
+  width: 60vw;
+}
+
+
+.row{
+  color: white;
+  padding: 1em 0;
+}
+
+
+.heading > h1 > img{
+  object-fit: contain;
+  height: 90%;
+  display: inline-block;
+  padding-right: 0.2em;
+}
+
+.heading, .search-row , .heading > h1 , .search-row > .form-inline, .search-content{
+  display: flex; justify-content: center;
+}
+
+.search-row{
+  min-width: 60%;
+}
+
+
+.form-inline{
+  width: 100%;
+}
+
+/* SMALL screens */
+@media screen and (max-width:770px) {
+  .container{
+    display: none;
+  }
+}

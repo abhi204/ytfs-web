@@ -1,0 +1,47 @@
+{% extends '__base/__base.html' %}
+{% load static %}
+
+{% block TITLE %}YTFSWeb - Stream and Download Youtube Videos!{% endblock %}
+
+{%block INCLUDE%}
+<link rel="stylesheet" href="{% static '/homepage/homepage.css' %}">
+{%endblock%}
+
+{% block HOME %}
+<div id="particles-js"></div>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12 heading">
+      <h1><img src="{% static '__base/logo-image.png'%}" alt="" />YTFSWeb</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 search-content">
+      <div class="search-row">
+        <form class="form-inline">
+          <input class="form-control search-box" type="search" placeholder="Search" aria-label="Search" style="width:70%">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+        <div class="dropdown">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+           720p
+         </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">720p</a>
+            <a class="dropdown-item" href="#">480p</a>
+            <a class="dropdown-item" href="#">360p</a>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="{% static '/homepage/homepage.js' %}" charset="utf-8"></script>
+{% endblock %}

@@ -1,22 +1,41 @@
 {% extends '__base/__base.html' %}
 {% load static %}
+
 {% block TITLE %}YTFSWeb - Stream and Download Youtube Videos!{% endblock %}
 
 {%block INCLUDE%}
-  <link rel="stylesheet" href="{% static '/homepage/homepage.css' %}">
-  <script src="{% static '/homepage/homepage.js' %}" charset="utf-8"></script>
+<link rel="stylesheet" href="{% static '/homepage/homepage.css' %}">
 {%endblock%}
 
-{% block BODY %}
+{% block HOME %}
+<div id="particles-js"></div>
+<div class="container">
+  <div class="row">
+    <h1 class="heading"><img src="{% static '__base/logo-image.png'%}" alt="" id="logo" /> YTFSWeb</h1>
+  </div>
 
+  <div class="row">
+    <div class="col-12">
+      <input class="form-control search-box" type="search" placeholder="Search" aria-label="Search" >
+    </div>
+    <div class="col-6">
+      <div class="dropdown">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+          720p
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">720p</a>
+          <a class="dropdown-item" href="#">480p</a>
+          <a class="dropdown-item" href="#">360p</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 search-btn-div">
+      <button class="btn btn-outline-danger" type="submit"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+</div>
+
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="{% static '/homepage/homepage.js' %}" charset="utf-8"></script>
 {% endblock %}
-<!-- <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    this homepage is index.html
-  </body>
-</html> -->
