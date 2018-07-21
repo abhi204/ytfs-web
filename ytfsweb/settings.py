@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'livereload',
     'django.contrib.staticfiles',
     'homepage.apps.HomepageConfig',
 ]
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'ytfsweb.urls'
@@ -130,3 +132,5 @@ MY_STATIC = os.path.join(BASE_DIR,'mystatic') #MY static FILES which are organis
 STATICFILES_DIRS = [
     MY_STATIC,
 ]
+
+LIVERELOAD_PORT = '8001'
