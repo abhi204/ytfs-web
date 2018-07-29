@@ -109,3 +109,51 @@ particlesJS("particles-js", {
   },
   "retina_detect": true
 });
+
+function qualityToggle(e) {
+  let selectedQuality = document.querySelectorAll('.fetch-quality');
+  selectedQuality.forEach(item => {
+    item.innerHTML = e.target.innerHTML;
+    item.dataset.format = e.target.innerHTML;
+  });
+}
+
+//both seachText boxes update each other
+function searchTextUpdate(e) {
+  document.querySelector('.search-text-sm').value = e.target.value;
+  document.querySelector('.search-text').value = e.target.value;
+}
+document.querySelector('.search-text-sm').addEventListener('change',searchTextUpdate);
+document.querySelector('.search-text').addEventListener('change',searchTextUpdate);
+
+function search(e) {
+  let inText = document.querySelector('.search-text').value
+  let inQuality = document.querySelector('.fetch-quality').dataset.format;
+
+  let hiddenForm = document.getElementById('search-form');
+  let hiddenFormText = document.getElementById('send-text');
+  let hiddenFormQuality = document.getElementById('send-quality');
+
+  hiddenFormText.value = inText;
+  hiddenFormQuality.value = inQuality;
+  console.log(hiddenFormText.value);
+  console.log(hiddenFormQuality.value);
+
+  hiddenForm.submit();
+}
+document.querySelector('.search-start-sm').addEventListener("click",search);
+document.querySelector('.search-start').addEventListener("click",search);
+
+function enterKey(e) {
+  if (e.keyCode===13){
+    search(e);
+  }
+}
+document.querySelector('.search-text-sm').addEventListener("keyup",enterKey);
+document.querySelector('.search-text').addEventListener("keyup",enterKey);
+
+
+
+
+let toggleList = Array.from(document.querySelectorAll('.dropdown-item'));
+toggleList.map(item => item.addEventListener('click',qualityToggle))

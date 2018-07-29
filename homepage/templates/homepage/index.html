@@ -16,12 +16,13 @@
 <!-- searchbox for small width devices -->
   <div class="row search-small">
     <div class="col-12">
-      <input class="form-control search-box" type="search" placeholder="Search" aria-label="Search" >
+      <input class="form-control search-text-sm" type="search" placeholder="Search" aria-label="Search" value = "{{search_text}}" />
     </div>
     <div class="col-6">
       <div class="dropdown">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-          720p
+         <!-- incase of issues with toggle button, change class fetch-quality to fetch-quality-sm given below -->
+        <button type="button" class="btn btn-danger dropdown-toggle fetch-quality" data-toggle="dropdown" data-format='{{ resp_quality }}'>
+          {{ resp_quality }}
         </button>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">720p</a>
@@ -31,16 +32,16 @@
       </div>
     </div>
     <div class="col-6 search-btn-div">
-      <button class="btn btn-outline-danger" type="submit"><i class="fa fa-search"></i></button>
+      <button class="btn btn-outline-danger search-start-sm" type="submit"><i class="fa fa-search"></i></button>
     </div>
   </div>
 
-<!-- Searchbox for other devices  -->
+<!-- Searchbox for other Medium/Large devices  -->
   <div class="row search-md-lg">
     <div class="col-2 quality-dropdown-md-lg elem">
       <div class="dropdown">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-          720p
+        <button type="button" class="btn btn-danger dropdown-toggle fetch-quality" data-toggle="dropdown" data-format="{{ resp_quality }}">
+          {{ resp_quality }}
         </button>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">720p</a>
@@ -50,14 +51,33 @@
       </div>
     </div>
     <div class="col-8">
-      <input class="form-control search-box" type="search" placeholder="Search" aria-label="Search" >
+      <input class="form-control search-text" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}" />
     </div>
     <div class="col-2 search-btn-div elem">
-      <button class="btn btn-outline-danger" type="submit">Search</button>
+      <button class="btn btn-outline-danger search-start" type="submit">Search</button>
     </div>
   </div>
 </div>
 
+<form id="search-form" action="{% url 'homepage' %}" method="post" style="display:none">
+  {% csrf_token %}
+  <input type="text" name='search-text' id="send-text">
+  <input type="text" name="search-quality" id="send-quality">
+  <!-- <input type="su" name="" value=""> -->
+</form>
+{% if search_text %}
+<script type="text/javascript">
+  let input = document.getElementsByTagName("input");
+  Array.from(input).forEach(elem => {
+    if (elem.type === "search"){
+      elem.value = "{{ search_text }}";
+    };
+  });
+
+
+  window.alert("{{search_text}} {{quality}}");
+</script>
+{% endif %}
 <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="{% static '/homepage/homepage.js' %}" charset="utf-8"></script>
 {% endblock %}
