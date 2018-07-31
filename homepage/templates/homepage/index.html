@@ -25,9 +25,9 @@
           {{ resp_quality }}
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">720p</a>
-          <a class="dropdown-item" href="#">480p</a>
-          <a class="dropdown-item" href="#">360p</a>
+          <a class="dropdown-item" href="#">720p </a>
+          <a class="dropdown-item" href="#">480p </a>
+          <a class="dropdown-item" href="#">360p </a>
         </div>
       </div>
     </div>
@@ -44,9 +44,9 @@
           {{ resp_quality }}
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">720p</a>
-          <a class="dropdown-item" href="#">480p</a>
-          <a class="dropdown-item" href="#">360p</a>
+          <a class="dropdown-item" href="#">720p </a>
+          <a class="dropdown-item" href="#">480p </a>
+          <a class="dropdown-item" href="#">360p </a>
         </div>
       </div>
     </div>
@@ -59,25 +59,12 @@
   </div>
 </div>
 
-<form id="search-form" action="{% url 'homepage' %}" method="post" style="display:none">
+<form id="search-form" action="{% url 'results' %}" method="post" style="display:none">
   {% csrf_token %}
   <input type="text" name='search-text' id="send-text">
   <input type="text" name="search-quality" id="send-quality">
   <!-- <input type="su" name="" value=""> -->
 </form>
-{% if search_text %}
-<script type="text/javascript">
-  let input = document.getElementsByTagName("input");
-  Array.from(input).forEach(elem => {
-    if (elem.type === "search"){
-      elem.value = "{{ search_text }}";
-    };
-  });
-
-
-  window.alert("{{search_text}} {{quality}}");
-</script>
-{% endif %}
 <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script src="{% static '/homepage/homepage.js' %}" charset="utf-8"></script>
 {% endblock %}
