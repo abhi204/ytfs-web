@@ -53,6 +53,11 @@
   padding: 0.5rem;
 }
 
+#quality-text{
+  color: white;
+  padding: 0.4rem;
+}
+
 #list-toggle {
   flex-grow: inherit;
 }

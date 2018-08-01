@@ -4,7 +4,9 @@ from django.shortcuts import render,redirect
 
 def results(request):
     if request.method == "POST":
-        return render(request,'results/results.html')
+        search_text = request.POST['search-text']
+        resp_quality = request.POST['search-quality']
+        return render(request,'results/results.html',{'resp_quality':resp_quality,'search_text':search_text})
 
     else:
         return redirect('homepage')
