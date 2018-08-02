@@ -1,4 +1,15 @@
 {% extends '__base/__base.html'%}
-{% block BODY %}
+{%load static%}
 
+{%block TITLE%} {{search_text}} - YTFSWeb{% endblock %}
+
+{% block INCLUDE %}
+<link rel="stylesheet" href="{% static '/results/results.css' %}">
+{% endblock %}
+
+{% block BODY %}
+<div class="video-list container">
+
+</div>
+<script src="{% static '/results/results.js' %}" charset="utf-8"></script>
 {% endblock %}

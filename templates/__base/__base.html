@@ -14,21 +14,20 @@
 </head>
 
 <body>
-  {% if homepage %}
-    {%block HOME%}{%endblock%}
-  {% else %}
+  {% if homepage %} {%block HOME%}{%endblock%} {% else %}
   <div id="particles-js"></div>
+  <div class="container-fluid full-page">
     <!--- TOP Navigation Bar -->
     <!-- For Large Screens -->
     <nav class="navbar bg-dark navbar-dark navbar-expand-md largenav sticky-top">
-      <a href="{% url "homepage" %}" class="navbar-brand"><img src="{% static '__base/menu-icon.png'%}" alt="" /> YTFSWeb</a>
+      <a href="{% url " homepage " %}" class="navbar-brand"><img src="{% static '__base/menu-icon.png'%}" alt="" /> YTFSWeb</a>
       <div class="search">
         <!-- <div> -->
-          <form class="form-inline">
-            <!-- {% csrf_token %} -->
-            <input class="form-control search_text" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}">
-            <button class="btn btn-outline-danger my-2 my-sm-0 search-start" >Search</button>
-          </form>
+        <form class="form-inline">
+          <!-- {% csrf_token %} -->
+          <input class="form-control search_text" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}">
+          <button class="btn btn-outline-danger my-2 my-sm-0 search-start">Search</button>
+        </form>
         <!-- </div> -->
       </div>
       <button class="navbar-toggler" data-target="#list-toggle" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
@@ -48,16 +47,15 @@
         </div>
       </div>
     </nav>
-
     <!-- For Small Screen -->
     <nav class="navbar bg-dark navbar-dark smallnav">
       <div class="container">
         <div class="navbar-brand small-logo">
-          <a href="{% url "homepage" %}" class="navbar-brand small-icon"><img src="{% static '__base/menu-icon.png'%}" alt="" /> </a>
+          <a href="{% url " homepage " %}" class="navbar-brand small-icon"><img src="{% static '__base/menu-icon.png'%}" alt="" /> </a>
         </div>
         <div class="search small-search">
           <!-- <form class="form-inline"> -->
-          <input class="form-control small-search-input" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}" >
+          <input class="form-control small-search-input" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}">
           <button class="btn btn-outline-danger my-2 my-sm-0 search-start-sm" type="submit"><i class="fa fa-search"></i></button>
           <!-- </form> -->
         </div>
@@ -76,18 +74,17 @@
       </div>
     </nav>
 
+
+    <!-- PAGE CONTENT  -->
+    {%block BODY%}{%endblock%}
+
     <!-- hidden Submit Form -->
     <form id="search-form" action="{% url 'results' %}" method="post" style="display:none">
       {% csrf_token %}
       <input type="text" name='search-text' id="send-text">
       <input type="text" name="search-quality" id="send-quality">
     </form>
-
-    <!-- PAGE CONTENT  -->
-    <div class="container">
-      {%block BODY%}{%endblock%}
-    </div>
-
+  </div>
   {% endif %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>

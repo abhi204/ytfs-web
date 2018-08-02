@@ -7,17 +7,19 @@
  canvas {
    display: block;
    vertical-align: bottom;
-   width: 100vw;
-   height: auto;
  }
 
  #particles-js {
-   position: absolute;
+   position: fixed;
    width: 100%;
    height: 100%;
-   background: #55002be6;
+   background: #55002b;
    left: 0;
  }
+
+.full-page{
+  padding: 0;
+}
 
 /* FOR LARGE SCREENS */
 
