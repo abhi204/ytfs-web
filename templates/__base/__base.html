@@ -17,6 +17,7 @@
   {% if homepage %}
     {%block HOME%}{%endblock%}
   {% else %}
+  <div id="particles-js"></div>
     <!--- TOP Navigation Bar -->
     <!-- For Large Screens -->
     <nav class="navbar bg-dark navbar-dark navbar-expand-md largenav sticky-top">
@@ -86,11 +87,13 @@
     <div class="container">
       {%block BODY%}{%endblock%}
     </div>
+
   {% endif %}
-  <script src="{% static '/__base/__base.js' %}" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="{% static '/__base/__base.js' %}" charset="utf-8"></script>
 </body>
 
 </html>

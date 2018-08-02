@@ -3,6 +3,22 @@
   color: white;
 }
 
+/* particlesJS  */
+ canvas {
+   display: block;
+   vertical-align: bottom;
+   width: 100vw;
+   height: auto;
+ }
+
+ #particles-js {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: #55002be6;
+   left: 0;
+ }
+
 /* FOR LARGE SCREENS */
 
 .nav-item {
