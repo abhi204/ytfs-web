@@ -46,7 +46,8 @@ def mkdirs(folder_name,text,quality): # text is search_text
 def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
     token = folder_name #token == SessionName => generated folder on each search
 
-    files_list = subprocess.run(['ls',os.path.join(MEDIA_FOLDER,token,"stream",quality,text)],stdout=subprocess.PIPE).stdout.decode().split('\n')
+    files_list = subprocess.run(['ls',os.path.join(MEDIA_FOLDER,token,"stream",quality,text)],stdout=subprocess.PIPE).stdout.decode().split('\n')[:-1]  #due to split the last element is "" so [:-1] is done
+
 
     print("files_list is :")
     for x in files_list:
@@ -62,13 +63,3 @@ def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
     data_file = open(os.path.join(MEDIA_FOLDER,token,'data.json'),'w+')
     json.dump(data,data_file)
     data_file.close()
-
-    pass
-
-
-
-
-
-
-
-folder_path = os.path.join(MEDIA_FOLDER,"sessionFolder",'blas') # makes session folder in project's media folder
