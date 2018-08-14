@@ -9,7 +9,10 @@
 
 {% block BODY %}
 <div class="video-list container">
-<pre>{{test}}</pre>
+{{session}}
 </div>
+<script type="text/javascript">
+  let pageData = { session:"{{session}}" , resp_quality:"{{resp_quality}}" }
+</script>
 <script src="{% static '/results/results.js' %}" charset="utf-8"></script>
 {% endblock %}

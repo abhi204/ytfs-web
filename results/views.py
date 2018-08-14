@@ -16,10 +16,10 @@ def results(request):
         else:
             ip = request.META["REMOTE_ADDR"]
 #################################################
-
-        token = functions.gen_token(resp_quality,search_text) ##For test Purpose
-
-        return render(request,'results/results.html',{'resp_quality':resp_quality,'search_text':search_text,'test':""})
+        session = functions.gen_token(resp_quality,search_text)
+        # print("data passsed into page is: "+data+"\n typeof(data): "+str(type(data)))
+        # data = "{'a':'asdasd','c':'asdasdasd'}"
+        return render(request,'results/results.html',{'resp_quality':resp_quality,'search_text':search_text,'session':session})
 
     else:
         return redirect('homepage')

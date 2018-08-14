@@ -4,20 +4,19 @@ from django.conf import settings
 import os
 import json
 
-
 MEDIA_FOLDER = settings.MEDIA_ROOT
 
 def gen_token(video_quality,search_text):
 
+    '''
+    returns object in string form : session aka folder_name
+    '''
     folder_name = str(uuid.uuid4()) # folder_name = tokenName = SessionName
-
     mkdirs(folder_name,search_text,video_quality)
-
-    generate_JSON_data(folder_name,search_text,video_quality) # generate JSON file in session-folder with fields = { titles, quality(=fetch quality)}
+    json_data = generate_JSON_data(folder_name,search_text,video_quality) # generate JSON file in session-folder with fields = { titles, quality(=fetch quality)}
 
     #Schedule Celery Task to delete the token folder(i.e. Session-folder after 24hours)
-
-    return folder_name
+    return folder_name #return stringified object {token,titles}
 
 
 def mkdirs(folder_name,text,quality): # text is search_text
@@ -26,6 +25,7 @@ def mkdirs(folder_name,text,quality): # text is search_text
     dl_path = os.path.join(folder_path,'dl') #download folder path
     subprocess.run(['mkdir',folder_path,stream_path,dl_path])
     formats = ["720p","480p","360p"]
+    # formats = ["720p"] #debug Mode
 
     main_dir = os.getcwd()
     os.chdir(stream_path)
@@ -41,7 +41,6 @@ def mkdirs(folder_name,text,quality): # text is search_text
             subprocess.run(['mkdir',os.path.join(quality_folder_path,text)]) #Takes comparatively less time (But is required by webpage only when user changes streaming video quality)
 
     os.chdir(main_dir)
-
 
 def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
     token = folder_name #token == SessionName => generated folder on each search
@@ -63,3 +62,7 @@ def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
     data_file = open(os.path.join(MEDIA_FOLDER,token,'data.json'),'w+')
     json.dump(data,data_file)
     data_file.close()
+
+    json_data = json.dumps(data)
+
+    return json_data
