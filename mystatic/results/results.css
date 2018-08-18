@@ -3,5 +3,42 @@
   background-color:rgba(255,255,255, 0.8);
   margin-top: 3rem;
   margin-bottom: 3rem;
-  border-radius: 0.3rem;
+  border-radius: 0.1rem;
+  width: 55%;
+  padding: 0;
+}
+
+/* LARGE-MEDIUM SCREENS  */
+.video-field{
+  padding: 0.5rem;
+}
+
+.video-field-data{
+  /* background-color: grey; */
+  height: 100%;
+}
+.show-data{
+  display: flex;
+  max-height: 100%;
+}
+.show-data > img{
+  object-fit: scale-down;
+  width: 8rem;
+  height: 6rem;
+}
+
+.show-data > .title{
+  margin-left: 0.5rem;
+}
+.hidden-field-data{
+  display: all 0.5s linear;
+}
+
+/* .hidden{
+  display: none;
+} */
+
+
+.full-hr{
+  width: 100%;
 }

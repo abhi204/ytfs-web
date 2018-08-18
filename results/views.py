@@ -17,6 +17,12 @@ def results(request):
             ip = request.META["REMOTE_ADDR"]
 #################################################
         session = functions.gen_token(resp_quality,search_text)
+
+        # DEBUG: comment the line below before commiting
+        # session = "debug-mode"
+        # search_text = "blink-182"
+        # resp_quality = "720"
+
         # print("data passsed into page is: "+data+"\n typeof(data): "+str(type(data)))
         # data = "{'a':'asdasd','c':'asdasdasd'}"
         return render(request,'results/results.html',{'resp_quality':resp_quality,'search_text':search_text,'session':session})
