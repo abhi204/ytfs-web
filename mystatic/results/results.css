@@ -37,8 +37,21 @@
 /* .hidden{
   display: none;
 } */
+.title{
+  position: relative;
+  width: 30rem;
+}
+.video-options{
+  position: absolute;
+  bottom:0;
+  left: 0;
+}
 
+.switch-page{
+  padding: 1rem;
+  padding-top: 0;
+}
 
-.full-hr{
-  width: 100%;
+.switch-page > #next {
+  float: right;
 }

@@ -1,9 +1,18 @@
 {% extends '__base/__base.html'%} {%load static%} {%block TITLE%} {{search_text}} - YTFSWeb{% endblock %} {% block INCLUDE %}
 <link href="https://vjs.zencdn.net/7.1.0/video-js.css" rel="stylesheet">
 <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+<!-- <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script> -->
 <link rel="stylesheet" href="{% static '/results/results.css' %}"> {% endblock %} {% block BODY %}
-<div class="video-list container"></div>
+<div class="video-list container">
+    <div class="video-fields-list">
+
+    </div>
+    <div class="switch-page">
+      <a type="button" class="btn btn-secondary btn-large" href="#" target="_blank"><< Prev</a>
+      <a type="button" class="btn btn-secondary btn-large" href="#" download id="next">Next >></a>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
   let pageData = {
     session: "{{session}}",
@@ -11,6 +20,6 @@
     search_text: "{{search_text}}"
   }
 </script>
-<script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
+<!-- <script src="https://vjs.zencdn.net/7.1.0/video.js"></script> -->
 <script src="{% static '/results/results.js' %}" charset="utf-8"></script>
 {% endblock %}
