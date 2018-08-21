@@ -41,10 +41,20 @@ function createVideoField(title) {
         <h6>${title}</h6>
         <div class="video-options">
           <a type="button" class="btn btn-dark" href="/media/${token}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.mp4" target="_blank">Stream</a>
-          <a type="button" class="btn btn-danger" href="/media/${token}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.mp4" download>Download</a>
+          <button type="button" class="btn btn-danger download-btn" onclick="downloadVideo(this)" data-title="${title}" data-quality="360p">Download</button>
         </div>
       </div>
     </div>
     <hr>`
   return videoField;
+}
+
+function downloadVideo(clickElement) {
+  console.log(clickElement);
+  let downloadForm = document.querySelector(".download-form")
+  let downloadTitle = document.querySelector("input[name=download_title]")
+  let downloadQuality = document.querySelector("input[name=download_quality]")
+  downloadTitle.value = clickElement.dataset.title
+  downloadQuality.value = clickElement.dataset.quality
+  downloadForm.submit()
 }

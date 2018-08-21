@@ -13,6 +13,15 @@
     </div>
   </div>
 </div>
+
+<iframe width="0" height="0" style="display:none" name="dummy"></iframe>
+<form class="download-form" action="{% url 'download' %}" method="post" style="display:none" target="dummy">
+  {% csrf_token %}
+  <input type="text" name="download_title" value=""/>
+  <input type="text" name="download_quality" value=""/>
+  <!-- <button type="submit" name="submit-button" onclick="return false"></button> -->
+</form>
+
 <script type="text/javascript">
   let pageData = {
     session: "{{session}}",

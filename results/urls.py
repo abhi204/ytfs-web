@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('',views.results,name='results'),
+    path('download/',views.download,name='download')
 ]
