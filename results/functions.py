@@ -18,7 +18,6 @@ def gen_token(video_quality,search_text):
     #Schedule Celery Task to delete the token folder(i.e. Session-folder after 24hours)
     return folder_name #return stringified object {token,titles}
 
-
 def mkdirs(folder_name,text,quality): # text is search_text
     folder_path = os.path.join(MEDIA_FOLDER,folder_name) # session folder path
     stream_path = os.path.join(folder_path,'stream') # stream folder path
@@ -31,14 +30,17 @@ def mkdirs(folder_name,text,quality): # text is search_text
     os.chdir(stream_path)
 
     for format in formats:
+        c_format = str(format)[:-1] #for ytfs -f flag
+        print("\n FORMAT :::: "+c_format+"\n")
         quality_folder_path = str(os.path.join(stream_path,format))
         subprocess.run(['mkdir',quality_folder_path])
         if format == quality:
-            subprocess.run(['ytfs','-f',str(format),'-m','thumb',quality_folder_path]) # can add description META later
+            subprocess.run(['ytfs','-f',c_format,'-m','thumb',quality_folder_path]) # can add description META later
             subprocess.run(['mkdir',os.path.join(quality_folder_path,text)]) #Takes time (But is required by webpage)
-        else:  #To be run by Celery for background execution
-            subprocess.run(['ytfs','-f',str(format),quality_folder_path])
-            subprocess.run(['mkdir',os.path.join(quality_folder_path,text)]) #Takes comparatively less time (But is required by webpage only when user changes streaming video quality)
+        #For mounting Other video Format folders
+        # else:  #To be run by Celery for background execution
+        #     subprocess.run(['ytfs','-f',str(format),quality_folder_path])
+        #     subprocess.run(['mkdir',os.path.join(quality_folder_path,text)]) #Takes comparatively less time (But is required by webpage only when user changes streaming video quality)
 
     os.chdir(main_dir)
 
@@ -66,3 +68,6 @@ def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
     json_data = json.dumps(data)
 
     return json_data
+
+def download_generator(session,download_quality,download_title):
+    pass
