@@ -31,7 +31,7 @@ def mkdirs(folder_name,text,quality): # text is search_text
 
     for format in formats:
         c_format = str(format)[:-1] #for ytfs -f flag
-        print("\n FORMAT :::: "+c_format+"\n")
+
         quality_folder_path = str(os.path.join(stream_path,format))
         subprocess.run(['mkdir',quality_folder_path])
         if format == quality:
@@ -70,4 +70,19 @@ def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
     return json_data
 
 def download_generator(session,download_quality,download_title):
-    pass
+    download_session = str(uuid.uuid4()) #Created inside dl folder
+    dl_folder = os.path.join(MEDIA_FOLDER,session,"dl")
+    download_quality = download_quality[:-1] #given quality is "720p" results in "720"
+    main_dir = os.getcwd()
+    os.chdir(dl_folder)
+
+    download_title_folder = os.path.join(dl_folder,download_session,download_title)
+    subprocess.run(["mkdir",download_session])
+    subprocess.run(["ytfs","-f",download_quality,download_session])
+    subprocess.run(["mkdir",download_title_folder])
+    file_name = download_title+".mp4"
+
+    download_path = os.path.join(download_title_folder,file_name)
+    os.chdir(main_dir)
+
+    return download_path

@@ -36,6 +36,9 @@ def download(request):
         download_quality = request.POST['download_quality']
         session = request.POST['session']
         print("GOT DOWNLOAD REQUEST FOR FILE {0} in format {1} (Session is : {2})".format(download_title,download_quality,session))
+
+        download_file_path = functions.download_generator(session,download_quality,download_title)
+        
         return render(request,'results/dummy.html')
     else:
         return redirect("homepage")
