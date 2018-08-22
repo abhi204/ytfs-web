@@ -34,7 +34,8 @@ def download(request):
     if request.method == "POST":
         download_title = request.POST['download_title']
         download_quality = request.POST['download_quality']
-        print("GOT DOWNLOAD REQUEST FOR FILE {0} in format {1}".format(download_title,download_quality))
+        session = request.POST['session']
+        print("GOT DOWNLOAD REQUEST FOR FILE {0} in format {1} (Session is : {2})".format(download_title,download_quality,session))
         return render(request,'results/dummy.html')
     else:
         return redirect("homepage")
