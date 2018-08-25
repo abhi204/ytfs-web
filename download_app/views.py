@@ -13,4 +13,11 @@ def download(request):
         local_download_path = download_process[0]
         download_file = download_process[1]
 
-        return render(request,'download/download.html',{"session":session,"title":title,"quality":download_quality,"path":local_download_path,"file_name":download_file})
+        x_accel_redirect = download_process[2]
+        return render(request,'download/download.html',{"session":session,
+                                                        "title":title,
+                                                        "quality":download_quality,
+                                                        "path":local_download_path,
+                                                        "file_name":download_file,
+                                                        "x":x_accel_redirect,
+                                                        })

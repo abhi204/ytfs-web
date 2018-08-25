@@ -18,9 +18,11 @@ def download_generator(session,download_quality,download_title):
     subprocess.run(["mkdir",download_title_folder])
     file_name = download_title+".mp4"
 
-    download_path = os.path.join(download_title_folder,file_name)
+    download_local_path = os.path.join(download_title_folder,file_name)
     os.chdir(main_dir)
 
-    subprocess.run(['tail','-c','1',download_path])
+    subprocess.run(['tail','-c','1',download_local_path])
 
-    return (download_path,file_name)
+    redirect_path = '/serve/media/{session1}/dl/{session2}/{title}/{file}'.format(session1=session,session2=download_session,title=download_title,file=file_name)
+
+    return (download_local_path,file_name,redirect_path)
