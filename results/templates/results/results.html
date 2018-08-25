@@ -15,7 +15,7 @@
 </div>
 
 <iframe width="0" height="0" style="display:none" name="dummy"></iframe>
-<form class="download-form" action="{% url 'download' %}" method="post" style="display:none" target="dummy">
+<form class="download-form" action="{% url 'download' %}" method="get" style="display:none" target="dummy">
   {% csrf_token %}
   <input type="text" name="session" value="{{session}}">
   <input type="text" name="download_title" value=""/>
