@@ -1,5 +1,8 @@
 from django.shortcuts import render,redirect
 from . import functions
+from django.http import HttpResponse
+import os
+import subprocess
 
 from django.conf import settings
 
@@ -17,16 +20,7 @@ def results(request):
             ip = request.META["REMOTE_ADDR"]
 #################################################
         session = functions.gen_token(resp_quality,search_text)
-
-        # DEBUG: comment the line below before commiting
-        # session = "debug-mode"
-        # search_text = "blink-182"
-        # resp_quality = "720"
-
-        # print("data passsed into page is: "+data+"\n typeof(data): "+str(type(data)))
-        # data = "{'a':'asdasd','c':'asdasdasd'}"
         return render(request,'results/results.html',{'resp_quality':resp_quality,'search_text':search_text,'session':session})
-
     else:
         return redirect('homepage')
 
@@ -35,10 +29,19 @@ def download(request):
         download_title = request.POST['download_title']
         download_quality = request.POST['download_quality']
         session = request.POST['session']
-        print("GOT DOWNLOAD REQUEST FOR FILE {0} in format {1} (Session is : {2})".format(download_title,download_quality,session))
+        # print("GOT DOWNLOAD REQUEST FOR FILE {0} in format {1} (Session is : {2})".format(download_title,download_quality,session))
 
-        download_file_path = functions.download_generator(session,download_quality,download_title)
-        
-        return render(request,'results/dummy.html')
+        download_path = functions.download_generator(session,download_quality,download_title)
+        print("DOWNLOAD PATH : %s"%download_path)
+        response = HttpResponse(content_type='application/mp4')
+        response['Content-Disposition']='attachment;filename="%s"'%download_path
+        response["X-Accel-Redirect"] = download_path
+
+        subprocess.run(['tail','-c','1',download_path])
+        response['Content-length'] = os.stat(download_path).st_size
+        print(response.items())
+        return response
+
+        # return render(request,'results/dummy.html')
     else:
         return redirect("homepage")

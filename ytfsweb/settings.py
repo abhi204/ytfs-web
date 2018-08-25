@@ -41,7 +41,8 @@ if DEBUG:
         'livereload',
         'django.contrib.staticfiles',
         'homepage.apps.HomepageConfig',
-        'results.apps.ResultsConfig'
+        'results.apps.ResultsConfig',
+        'download_app.apps.DownloadAppConfig',
     ]
 
     MIDDLEWARE = [
