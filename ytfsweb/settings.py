@@ -53,7 +53,7 @@ MIDDLEWARE = [
 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if DEBUG:
+if False:
     INSTALLED_APPS += ['livereload',]
     MIDDLEWARE += ['livereload.middleware.LiveReloadScript',]
     LIVERELOAD_PORT = '8001'

@@ -2,6 +2,8 @@ let resp_quality = pageData.resp_quality;
 let token = pageData.session;
 let searchText = pageData.search_text;
 
+
+
 //get the data from json into the page and load the page
 let data = {};
 let getJson = async () => {
@@ -49,12 +51,32 @@ function createVideoField(title) {
   return videoField;
 }
 
-function downloadVideo(clickElement) {
-  console.log(clickElement);
-  let downloadForm = document.querySelector(".download-form")
-  let downloadTitle = document.querySelector("input[name=download_title]")
-  let downloadQuality = document.querySelector("input[name=download_quality]")
-  downloadTitle.value = clickElement.dataset.title
-  downloadQuality.value = clickElement.dataset.quality
-  downloadForm.submit()
+async function downloadVideo(clickElement) {
+  let downloadTitle = clickElement.dataset.title
+  let downloadQuality = clickElement.dataset.quality
+  let downloadUrl = ""
+  let parameters = {"session":token,"download_title":downloadTitle,"download_quality":downloadQuality}
+  let getRequest = new Request(generateGETUrl(parameters))
+  let sendRequest = await fetch(getRequest)
+                          .then(response => response.text())
+                          .then(txt => {downloadUrl = encodeURIComponent(txt).replace(/%2F/g,"/")})
+
+  console.log(downloadUrl);
+  let anchor = document.createElement("a")
+  anchor.href = downloadUrl
+  anchor.download = downloadTitle+".mp4"
+  anchor.style.display = "none"
+  document.body.appendChild(anchor)
+  anchor.click()
+  anchor.remove()
+}
+
+function generateGETUrl(params)
+{
+	query_url = '/download/?'
+	for(key in params){
+		value = params[key]
+		query_url+= encodeURIComponent(key)+'='+encodeURIComponent(value)+'&'
+	}
+	return query_url.substring(0,query_url.length-1) //remove the last & character
 }

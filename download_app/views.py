@@ -1,7 +1,6 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect
 from . import download_function
-
+from django.http import HttpResponse
 # Create your views here.
 def download(request):
     if request.method == "GET":
@@ -9,15 +8,10 @@ def download(request):
         title = request.GET['download_title']
         download_quality = request.GET['download_quality']
 
-        download_process = download_function.download_generator(session,download_quality,title)
-        local_download_path = download_process[0]
-        download_file = download_process[1]
+        file_url = download_function.download_generator(session,download_quality,title)
+        # local_download_path = download_process[0]
+        # download_file = download_process[1]
+        #
+        # x_accel_redirect = download_process[2]
 
-        x_accel_redirect = download_process[2]
-        return render(request,'download/download.html',{"session":session,
-                                                        "title":title,
-                                                        "quality":download_quality,
-                                                        "path":local_download_path,
-                                                        "file_name":download_file,
-                                                        "x":x_accel_redirect,
-                                                        })
+        return HttpResponse(file_url)

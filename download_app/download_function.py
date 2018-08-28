@@ -3,6 +3,7 @@ import os
 import subprocess
 from django.conf import settings
 
+
 MEDIA_FOLDER = settings.MEDIA_ROOT
 
 def download_generator(session,download_quality,download_title):
@@ -23,6 +24,6 @@ def download_generator(session,download_quality,download_title):
 
     subprocess.run(['tail','-c','1',download_local_path])
 
-    redirect_path = '/serve/media/{session1}/dl/{session2}/{title}/{file}'.format(session1=session,session2=download_session,title=download_title,file=file_name)
+    redirect_path = f'/media/{session}/dl/{download_session}/{download_title}/{file_name}'
 
-    return (download_local_path,file_name,redirect_path)
+    return redirect_path
