@@ -24,6 +24,6 @@ def download_generator(session,download_quality,download_title):
 
     subprocess.run(['tail','-c','1',download_local_path])
 
-    redirect_path = f'/media/{session}/dl/{download_session}/{download_title}/{file_name}'
+    redirect_path = '/media/{session}/dl/{download_session}/{download_title}/{file_name}'.format(session=session,download_session=download_session,download_title=download_title,file_name=file_name)
 
     return redirect_path
