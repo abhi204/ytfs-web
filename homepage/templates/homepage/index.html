@@ -14,14 +14,14 @@
     <h1 class="heading"><img src="{% static '__base/logo-image.png'%}" alt="" id="logo" /> YTFSWeb_</h1>
   </div>
 <!-- searchbox for small width devices -->
-  <div class="row search-small">
+  <div class="row search-small" style="display:none">
     <div class="col-12">
       <input class="form-control search-text-sm" type="search" placeholder="Search" aria-label="Search" value = "{{search_text}}" />
     </div>
     <div class="col-6">
       <div class="dropdown">
          <!-- incase of issues with toggle button, change class fetch-quality to fetch-quality-sm given below -->
-        <button type="button" class="btn btn-danger dropdown-toggle fetch-quality" data-toggle="dropdown" data-format='{{ resp_quality }}'>
+        <button type="button" class="btn btn-danger dropdown-toggle fetch-quality-sm" data-toggle="dropdown" data-format='{{ resp_quality }}'>
           {{ resp_quality }}
         </button>
         <div class="dropdown-menu">
