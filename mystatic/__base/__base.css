@@ -1,151 +1,21 @@
-:root {
-  font-size: calc(1vw + 1vh + .5vmin);
-  color: white;
+/* mystats */
+
+nav {
+  background-color: #282C00;
+  /* padding-bottom: 0!important;
+  padding-top: 0!important; */
 }
 
-/* particlesJS  */
- canvas {
-   display: block;
-   vertical-align: bottom;
- }
+body{
+  background-color: black;
+}
 
- #particles-js {
-   position: fixed;
-   width: 100%;
-   height: 100%;
-   background: #55002b;
-   left: 0;
- }
+.navbar-form{
+  /* margin-bottom: 0!important;
+  margin-top: 0!important; */
+  width: auto;
+}
 
 .full-page{
-  padding: 0;
-}
-
-/* FOR LARGE SCREENS */
-
-.nav-item {
-  flex-grow: 1;
-}
-
-.navbar {
-  background-color: #333333;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: small;
-}
-
-.navbar-brand {
-  color: white;
-}
-
-.navbar-brand > img {
-  object-fit: contain;
-  height: 1.5rem;
-}
-
-.search {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.search-start{
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-}
-
-.form-inline>.form-control {
-  margin-right: 0.6rem;
-  padding: 0.2rem;
-}
-
-.dropdown-item, .dropdown-menu {
-  background-color: rgb(176, 176, 176);
-}
-
-.quality {
-  margin-right: 0.5rem;
-}
-
-#navbarDropdownMenuLink, #navbarDropdownMenuLink:hover {
-  color: #ff0083;
-  font-weight: bold;
-}
-
-#navbarDropdownMenuLink:hover {
-  background-color: #555555;
-}
-
-#quality {
-  color: white;
-  padding: 0.5rem;
-}
-
-#quality-text{
-  color: white;
-  padding: 0.4rem;
-}
-
-#list-toggle {
-  flex-grow: inherit;
-}
-
-.smallnav {
-  display: none;
-}
-
-@media screen and (max-width: 767px) {
-  /* when toggle button is pressed. */
-  #list-toggle {
-    /* quality dropdown,text are formatted */
-    margin-top: 1em;
-  }
-  .quality, #quality {
-    display: inline-block;
-  }
-}
-
-@media screen and (max-width: 670px) {
-  .largenav {
-    display: none;
-  }
-  .smallnav {
-    display: flex;
-  }
-}
-
-
-/* FOR MEDIUM , SMALL SCREENS  */
-
-.small-logo, .small-icon {
-  margin-right: 0;
-}
-
-.small-icon > img{
-  object-fit: contain;
-  height: 2.3rem;
-}
-
-.small-quality {
-  margin-right: 0;
-}
-
-.quality-wrap {
-  display: flex;
-  justify-content: center;
-}
-
-.small-logo, .small-quality {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.small-search {
-  flex-grow: 3;
-}
-
-.small-search-input {
-  margin: 0 0.5em;
+  margin-top: 5.12em!important;
 }

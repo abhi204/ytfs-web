@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{%block TITLE %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static '/__base/__base.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> {%block INCLUDE%}{%endblock%}
+</head>
+
+<body>
+  {% if homepage %} {%block HOME%}{%endblock%} {% else %}
+  <div id="particles-js"></div>
+  <div class="container-fluid full-page">
+    <!--- TOP Navigation Bar -->
+    <!-- For Large Screens -->
+    <nav class="navbar bg-dark navbar-dark navbar-expand-md largenav sticky-top">
+      <a href="{% url 'homepage' %}" class="navbar-brand"><img src="{% static '__base/menu-icon.png'%}" alt="" /> YTFSWeb</a>
+      <div class="search">
+        <!-- <div> -->
+        <form class="form-inline">
+          <!-- {% csrf_token %} -->
+          <input class="form-control search_text" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}">
+          <button class="btn btn-outline-danger my-2 my-sm-0 search-start">Search</button>
+        </form>
+        <!-- </div> -->
+      </div>
+      <button class="navbar-toggler" data-target="#list-toggle" data-toggle="collapse"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="list-toggle">
+        <div class="nav-item dropdown quality">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Quality
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">720p</a>
+            <a class="dropdown-item" href="#">480p</a>
+            <a class="dropdown-item" href="#">360p</a>
+          </div>
+        </div>
+        <div class="navbar-text border border-danger rounded" id="quality-text">
+          {{resp_quality}}
+        </div>
+      </div>
+    </nav>
+    <!-- For Small Screen -->
+    <nav class="navbar bg-dark navbar-dark smallnav">
+      <div class="container">
+        <div class="navbar-brand small-logo">
+          <a href="{% url "homepage" %}" class="navbar-brand small-icon"><img src="{% static '__base/menu-icon.png'%}" alt="" /> </a>
+        </div>
+        <div class="search small-search">
+          <!-- <form class="form-inline"> -->
+          <input class="form-control small-search-input" type="search" placeholder="Search" aria-label="Search" value="{{search_text}}">
+          <button class="btn btn-outline-danger my-2 my-sm-0 search-start-sm" type="submit"><i class="fa fa-search"></i></button>
+          <!-- </form> -->
+        </div>
+        <div class="nav-item dropdown quality small-quality">
+          <div class="quality-wrap">
+            <a class="nav-link dropdown-toggle inQualitySmall" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{resp_quality}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">720p</a>
+              <a class="dropdown-item" href="#">480p</a>
+              <a class="dropdown-item" href="#">360p</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- PAGE CONTENT  -->
+    {%block BODY%}{%endblock%}
+
+    <!-- hidden Submit Form -->
+    <form id="search-form" action="{% url 'results' %}" method="post" style="display:none">
+      {% csrf_token %}
+      <input type="text" name='search-text' id="send-text">
+      <input type="text" name="search-quality" id="send-quality">
+    </form>
+  </div>
+  {% endif %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="{% static '/__base/__base.js' %}" charset="utf-8"></script>
+</body>
+
+</html>

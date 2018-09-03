@@ -3,7 +3,6 @@ let token = pageData.session;
 let searchText = pageData.search_text;
 
 
-
 //get the data from json into the page and load the page
 let data = {};
 let getJson = async () => {
@@ -40,7 +39,7 @@ function createVideoField(title) {
     <div class="show-data">
       <img src="/media/${token}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.jpg">
       <div class="title">
-        <h6>${title}</h6>
+        <h6 style="overflow:hidden">${title}</h6>
         <div class="video-options">
           <a type="button" class="btn btn-dark" href="/media/${token}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.mp4" target="_blank">Stream</a>
           <button type="button" class="btn btn-danger download-btn" onclick="downloadVideo(this)" data-title="${title}" data-quality="360p">Download</button>

@@ -28,7 +28,6 @@
     resp_quality: "{{resp_quality}}",
     search_text: "{{search_text}}"
   }
-
 </script>
 <!-- <script src="https://vjs.zencdn.net/7.1.0/video.js"></script> -->
 <script src="{% static '/results/results.js' %}" charset="utf-8"></script>

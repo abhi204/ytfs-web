@@ -19,7 +19,13 @@ def results(request):
         else:
             ip = request.META["REMOTE_ADDR"]
 #################################################
-        session = functions.gen_token(resp_quality,search_text)
+
+        # DEBUG:
+        # session = functions.gen_token(resp_quality,search_text)
+        session = "74edefdd-03ef-4a58-80c7-827a9a5cd50b"
+        resp_quality = '360p'
+        search_text = '3 days grace'
+
         return render(request,'results/results.html',{'resp_quality':resp_quality,'search_text':search_text,'session':session})
     else:
         return redirect('homepage')

@@ -21,6 +21,7 @@
    top: 50vh; transform: translateY(-50%);
    background-color:rgba(0, 0, 0, 0.4);
    /* min-width: 576px; */
+   font-size: 1.5em;
  }
 
 .row{
@@ -45,7 +46,7 @@
 .search-start{
   height: 100%;
 }
- /* Smallest screens */
+ /* Small screens */
  @media only screen and (max-width: 576px) {
 
    body{
