@@ -20,6 +20,20 @@ function loadPage(data) {
     }
   });
   titles.forEach(title => videoField(title));
+  let nxt = document.querySelector("#next") /* next page button*/
+  let prev = document.querySelector("#prev") /* previous page button*/
+
+  if (!data.titles.includes(" next")) {
+    nxt.classList.remove("btn-danger")
+    nxt.classList.add("btn-secondary")
+    nxt.setAttribute("disabled","")
+  }
+
+  if (!data.titles.includes(" prev")) {
+    prev.classList.remove("btn-danger")
+    prev.classList.add("btn-secondary")
+    prev.setAttribute("disabled","")
+  }
 }
 
 function videoField(title) {
