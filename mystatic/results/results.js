@@ -3,6 +3,8 @@ let session = pageData.session;
 let searchText = pageData.search_text;
 let csrfMiddlewareToken = pageData.csrf_middleware_token
 
+let nxt = document.querySelector("#next") /* next page button*/
+let prev = document.querySelector("#prev") /* previous page button*/
 
 //get the data from json into the page and load the page
 let data = {};
@@ -15,6 +17,9 @@ let getJson = async () => {
 getJson();
 
 function loadPage(data) {
+  //removes loading icon (incase for PageSwitch)
+  document.querySelector(".video-fields-list").innerHTML = "";
+
   let titles = data.titles.filter(title => {
     if (title!=" next" && title!=" prev") {
       return true;
@@ -22,9 +27,7 @@ function loadPage(data) {
   });
   titles.forEach(title => videoField(title));
 
-  let nxt = document.querySelector("#next") /* next page button*/
-  let prev = document.querySelector("#prev") /* previous page button*/
-
+  // disable next or Back button
   if (!data.titles.includes(" next")) {
     nxt.classList.remove("btn-danger")
     nxt.classList.add("btn-secondary")
@@ -104,11 +107,22 @@ async function switchPage(clickElement) {
   formData.append("session",session);
   formData.append("resp_quality",resp_quality);
   formData.append("search_text",searchText);
-  // let switchRequest = new Request('/result/switch',{method:"POST",body:formData});
+
+  //sets loading icon
+  let videoList = document.querySelector(".video-fields-list");
+  videoList.innerHTML = '<div class="loading"><i class="fa fa-refresh fa-spin"></i></div>';
+
+  //disable next and back button
+  nxt.setAttribute("disabled","");
+  prev.setAttribute("disabled","");
+
   await fetch('/result/switch',{
         method:"POST",
         body:formData,
       }).then(response => {console.log(response)})
         .then(data => {console.log(data)})
-        .catch(err => {console.log(`Error : ${err}`)})
+        .catch(err => {console.log(`Error : ${err}`)});
+  getJson();
+  nxt.removeAttribute("disabled");
+  prev.setAttribute("disabled","");
 }

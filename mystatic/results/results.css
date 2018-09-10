@@ -51,12 +51,20 @@
 .switch-page{
   padding: 1rem;
   padding-top: 0;
+  color: white; /* because nonherf links are black*/
 }
 
 .switch-page > #next {
   float: right;
 }
-
+.loading{
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 3em;
+  color: #DC3545;
+}
 
 /* Small Screens  */
 @media only screen and (max-width: 576px) {
