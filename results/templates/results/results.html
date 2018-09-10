@@ -8,8 +8,8 @@
 
     </div>
     <div class="switch-page">
-      <a type="button" class="btn btn-danger btn-large" href="#" id="prev"><< Back</a>
-      <a type="button" class="btn btn-danger btn-large" href="#" id="next">Next >></a>
+      <a type="button" class="btn btn-danger btn-large" id="prev" data-move_to="prev" onclick="switchPage(this)"><< Back</a>
+      <a type="button" class="btn btn-danger btn-large" id="next" data-move_to="next" onclick="switchPage(this)">Next >></a>
     </div>
   </div>
 </div>
@@ -24,6 +24,7 @@
 
 <script type="text/javascript">
   let pageData = {
+    csrf_middleware_token: "{{ csrf_token }}",
     session: "{{session}}",
     resp_quality: "{{resp_quality}}",
     search_text: "{{search_text}}"

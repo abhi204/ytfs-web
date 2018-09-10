@@ -1,6 +1,7 @@
 let resp_quality = pageData.resp_quality;
 let token = pageData.session;
 let searchText = pageData.search_text;
+let csrfMiddlewareToken = pageData.csrf_middleware_token
 
 
 //get the data from json into the page and load the page
@@ -20,6 +21,7 @@ function loadPage(data) {
     }
   });
   titles.forEach(title => videoField(title));
+
   let nxt = document.querySelector("#next") /* next page button*/
   let prev = document.querySelector("#prev") /* previous page button*/
 
@@ -92,4 +94,18 @@ function generateGETUrl(params)
 		query_url+= encodeURIComponent(key)+'='+encodeURIComponent(value)+'&'
 	}
 	return query_url.substring(0,query_url.length-1) //remove the last & character
+}
+
+async function switchPage(clickElement) {
+  let moveTo = clickElement.dataset.move_to;
+  let formData = new FormData();
+  formData.append("csrfmiddlewaretoken",csrfMiddlewareToken);
+  formData.append("switch",moveTo);
+  // let switchRequest = new Request('/result/switch',{method:"POST",body:formData});
+  await fetch('/result/switch',{
+        method:"POST",
+        body:formData,
+      }).then(response => {console.log(response)})
+        .then(data => {console.log(data)})
+        .catch(err => {console.log(`Error : ${err}`)})
 }
