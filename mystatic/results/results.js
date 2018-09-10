@@ -1,5 +1,5 @@
 let resp_quality = pageData.resp_quality;
-let token = pageData.session;
+let session = pageData.session;
 let searchText = pageData.search_text;
 let csrfMiddlewareToken = pageData.csrf_middleware_token
 
@@ -7,7 +7,7 @@ let csrfMiddlewareToken = pageData.csrf_middleware_token
 //get the data from json into the page and load the page
 let data = {};
 let getJson = async () => {
-  response = await fetch(`/media/${pageData.session}/data.json`);
+  response = await fetch(`/media/${session}/data.json`);
   json = await response.json();
   data = json;
   loadPage(data);
@@ -53,11 +53,11 @@ function createVideoField(title) {
   videoField.className = "video-field";
   videoField.innerHTML = `<div class="video-field-data">
     <div class="show-data">
-      <img src="/media/${token}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.jpg">
+      <img src="/media/${session}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.jpg">
       <div class="title">
         <h6 style="overflow:hidden">${title}</h6>
         <div class="video-options">
-          <a type="button" class="btn btn-dark" href="/media/${token}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.mp4" target="_blank">Stream</a>
+          <a type="button" class="btn btn-dark" href="/media/${session}/stream/${resp_quality}/${encodedSearchText}/${encodedTitle}.mp4" target="_blank">Stream</a>
           <button type="button" class="btn btn-danger download-btn" onclick="downloadVideo(this)" data-title="${title}" data-quality="360p">Download</button>
         </div>
       </div>
@@ -70,7 +70,7 @@ async function downloadVideo(clickElement) {
   let downloadTitle = clickElement.dataset.title
   let downloadQuality = clickElement.dataset.quality
   let downloadUrl = ""
-  let parameters = {"session":token,"download_title":downloadTitle,"download_quality":downloadQuality}
+  let parameters = {"session":session,"download_title":downloadTitle,"download_quality":downloadQuality}
   let getRequest = new Request(generateGETUrl(parameters))
   let sendRequest = await fetch(getRequest)
                           .then(response => response.text())
@@ -101,6 +101,9 @@ async function switchPage(clickElement) {
   let formData = new FormData();
   formData.append("csrfmiddlewaretoken",csrfMiddlewareToken);
   formData.append("switch",moveTo);
+  formData.append("session",session);
+  formData.append("resp_quality",resp_quality);
+  formData.append("search_text",searchText);
   // let switchRequest = new Request('/result/switch',{method:"POST",body:formData});
   await fetch('/result/switch',{
         method:"POST",
