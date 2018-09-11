@@ -39,6 +39,7 @@ function loadPage(data) {
     prev.classList.add("btn-secondary")
     prev.setAttribute("disabled","")
   }
+
 }
 
 function videoField(title) {
@@ -124,5 +125,5 @@ async function switchPage(clickElement) {
         .catch(err => {console.log(`Error : ${err}`)});
   getJson();
   nxt.removeAttribute("disabled");
-  prev.setAttribute("disabled","");
+  prev.removeAttribute("disabled","");
 }
