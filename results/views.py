@@ -35,7 +35,12 @@ def results(request):
 def switch_page(request):
     if request.method == "POST":
         if request.POST["switch"] in ["next","prev"]:
-            print("Got prev or next")
+            print("GOT {0} Request".format(request.POST["switch"]))
+            session = request.POST["session"]
+            resp_quality = request.POST["resp_quality"]
+            search_text = request.POST["search_text"]
+            switch_to = request.POST["switch"]
+            functions.switch_function(session,resp_quality,search_text,switch_to)
             return HttpResponse(request.POST["switch"])
     else:
         return redirect("homepage")

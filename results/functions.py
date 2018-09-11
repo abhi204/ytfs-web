@@ -44,30 +44,35 @@ def mkdirs(folder_name,text,quality): # text is search_text
 
     os.chdir(main_dir)
 
-def generate_JSON_data(folder_name,text,quality): #folder_name -> session folder
+def generate_JSON_data(folder_name,search_text,quality): #folder_name -> session folder
     token = folder_name #token == SessionName => generated folder on each search
-
-    files_list = subprocess.run(['ls',os.path.join(MEDIA_FOLDER,token,"stream",quality,text)],stdout=subprocess.PIPE).stdout.decode().split('\n')[:-1]  #due to split the last element is "" so [:-1] is done
-
-
+    files_list = subprocess.run(['ls',os.path.join(MEDIA_FOLDER,token,"stream",quality,search_text)],stdout=subprocess.PIPE).stdout.decode().split('\n')[:-1]  #due to split the last element is "" so [:-1] is done
     print("files_list is :")
     for x in files_list:
         print(x)
-
     titles = [os.path.splitext(x)[0] for x in files_list]
     for title in titles:
         if titles.count(title)>1:
             titles.remove(title)    #Remove duplicate entries (present because of each video has an mp4 and thumb file )
-
     data = {'token':token,"titles":titles}
-
     data_file = open(os.path.join(MEDIA_FOLDER,token,'data.json'),'w+')
     json.dump(data,data_file)
     data_file.close()
-
     json_data = json.dumps(data)
-
     return json_data
+
+
+
+
+
+
+def switch_function(session,quality,search_text,switch_to):
+    switch_to = " "+switch_to #because incoming switch_to is "next" but we need " next"
+    videos_folder = os.path.join(MEDIA_FOLDER,session,'stream',quality,search_text,"") # "" adds "/" at the end
+    print("videos folder-> "+videos_folder)
+    print("Running command : '{0}' ".format(videos_folder+switch_to))
+    subprocess.run(["{0}".format(videos_folder+switch_to)])
+    json_data = generate_JSON_data(session,search_text,quality)
 
 # DEBUG: obsolete Download function
 # def download_generator(session,download_quality,download_title):
