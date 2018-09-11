@@ -1,10 +1,10 @@
 let resp_quality = pageData.resp_quality;
 let session = pageData.session;
 let searchText = pageData.search_text;
-let csrfMiddlewareToken = pageData.csrf_middleware_token
+let csrfMiddlewareToken = pageData.csrf_middleware_token;
 
-let nxt = document.querySelector("#next") /* next page button*/
-let prev = document.querySelector("#prev") /* previous page button*/
+let nxt = document.querySelector("#next"); /* next page button*/
+let prev = document.querySelector("#prev"); /* previous page button*/
 
 //get the data from json into the page and load the page
 let data = {};
@@ -29,15 +29,13 @@ function loadPage(data) {
 
   // disable next or Back button
   if (!data.titles.includes(" next")) {
-    nxt.classList.remove("btn-danger")
-    nxt.classList.add("btn-secondary")
-    nxt.setAttribute("disabled","")
+    nxt.classList.replace("btn-danger","btn-secondary");
+    nxt.setAttribute("disabled","");
   }
 
   if (!data.titles.includes(" prev")) {
-    prev.classList.remove("btn-danger")
-    prev.classList.add("btn-secondary")
-    prev.setAttribute("disabled","")
+    prev.classList.replace("btn-danger","btn-secondary");
+    prev.setAttribute("disabled","");
   }
 
 }
@@ -45,14 +43,14 @@ function loadPage(data) {
 function videoField(title) {
   let createdVideoField = createVideoField(title);
   let videoFieldsContainer = document.querySelector(".video-fields-list");
-  videoFieldsContainer.appendChild(createdVideoField)
+  videoFieldsContainer.appendChild(createdVideoField);
 }
 
 //
 
 function createVideoField(title) {
-  let encodedSearchText = encodeURIComponent(searchText)
-  let encodedTitle = encodeURIComponent(title)
+  let encodedSearchText = encodeURIComponent(searchText);
+  let encodedTitle = encodeURIComponent(title);
   let videoField = document.createElement("div");
   videoField.className = "video-field";
   videoField.innerHTML = `<div class="video-field-data">
@@ -66,28 +64,28 @@ function createVideoField(title) {
         </div>
       </div>
     </div>
-    <hr>`
+    <hr>`;
   return videoField;
 }
 
 async function downloadVideo(clickElement) {
-  let downloadTitle = clickElement.dataset.title
-  let downloadQuality = clickElement.dataset.quality
-  let downloadUrl = ""
-  let parameters = {"session":session,"download_title":downloadTitle,"download_quality":downloadQuality}
-  let getRequest = new Request(generateGETUrl(parameters))
+  let downloadTitle = clickElement.dataset.title;
+  let downloadQuality = clickElement.dataset.quality;
+  let downloadUrl = "";
+  let parameters = {"session":session,"download_title":downloadTitle,"download_quality":downloadQuality};
+  let getRequest = new Request(generateGETUrl(parameters));
   let sendRequest = await fetch(getRequest)
                           .then(response => response.text())
-                          .then(txt => {downloadUrl = encodeURIComponent(txt).replace(/%2F/g,"/")})
+                          .then(txt => {downloadUrl = encodeURIComponent(txt).replace(/%2F/g,"/")});
 
   console.log(downloadUrl);
-  let anchor = document.createElement("a")
-  anchor.href = downloadUrl
-  anchor.download = downloadTitle+".mp4"
-  anchor.style.display = "none"
-  document.body.appendChild(anchor)
-  anchor.click()
-  anchor.remove()
+  let anchor = document.createElement("a");
+  anchor.href = downloadUrl;
+  anchor.download = downloadTitle+".mp4";
+  anchor.style.display = "none";
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
 }
 
 function generateGETUrl(params)
@@ -125,5 +123,7 @@ async function switchPage(clickElement) {
         .catch(err => {console.log(`Error : ${err}`)});
   getJson();
   nxt.removeAttribute("disabled");
-  prev.removeAttribute("disabled","");
+  prev.removeAttribute("disabled");
+  nxt.classList.replace("btn-secondary","btn-danger");
+  prev.classList.replace("btn-secondary","btn-danger");
 }
