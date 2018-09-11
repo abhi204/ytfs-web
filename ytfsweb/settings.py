@@ -57,6 +57,7 @@ if DEBUG:
     INSTALLED_APPS += ['livereload',]
     MIDDLEWARE += ['livereload.middleware.LiveReloadScript',]
     LIVERELOAD_PORT = '8001'
+    ALLOWED_HOSTS+=[local_settings.ip]
 
 
 
