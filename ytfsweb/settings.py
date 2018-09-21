@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 'django.contrib.staticfiles',
 'homepage.apps.HomepageConfig',
 'results.apps.ResultsConfig',
-'download_app.apps.DownloadAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 if DEBUG:
-    INSTALLED_APPS += ['livereload',]
+    INSTALLED_APPS += ['livereload']
     MIDDLEWARE += ['livereload.middleware.LiveReloadScript',]
     LIVERELOAD_PORT = '8001'
     ALLOWED_HOSTS+=[local_settings.ip]

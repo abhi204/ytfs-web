@@ -3,6 +3,9 @@ import subprocess
 from django.conf import settings
 import os
 import json
+from .tasks import umount
+
+# from datetime import datetime, timedelta
 
 MEDIA_FOLDER = settings.MEDIA_ROOT
 
@@ -37,6 +40,8 @@ def mkdirs(folder_name,text,quality): # text is search_text
         if format == quality:
             subprocess.run(['ytfs','-f',c_format,'-m','thumb',quality_folder_path]) # can add description META later
             subprocess.run(['mkdir',os.path.join(quality_folder_path,text)]) #Takes time (But is required by webpage)
+            #add CELERY stopper here arguments(quality_folder_path,folder_path)
+            umount.apply_async((quality_folder_path, folder_path), countdown=6*3600) #execute after 6 hours
         #For mounting Other video Format folders
         # else:  #To be run by Celery for background execution
         #     subprocess.run(['ytfs','-f',str(format),quality_folder_path])
@@ -47,9 +52,9 @@ def mkdirs(folder_name,text,quality): # text is search_text
 def generate_JSON_data(folder_name,search_text,quality): #folder_name -> session folder
     token = folder_name #token == SessionName => generated folder on each search
     files_list = subprocess.run(['ls',os.path.join(MEDIA_FOLDER,token,"stream",quality,search_text)],stdout=subprocess.PIPE).stdout.decode().split('\n')[:-1]  #due to split the last element is "" so [:-1] is done
-    print("files_list is :")
-    for x in files_list:
-        print(x)
+    # print("files_list is :")
+    # for x in files_list:
+    #     print(x)
     titles = [os.path.splitext(x)[0] for x in files_list]
     for title in titles:
         if titles.count(title)>1:
